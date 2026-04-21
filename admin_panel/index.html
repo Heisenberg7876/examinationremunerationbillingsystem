@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination and Academic Management System - Admin Panel</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/fontscss.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>Examination</h2>
+                        <p>Management</p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-group">
+                        <div class="nav-group-label">Academic Management</div>
+                        <button class="nav-btn" data-section="add-subject">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Subject Info</span>
+                        </button>
+                        <button class="nav-btn" data-section="display-subject">
+                            <i class="fas fa-table"></i>
+                            <span>Display Subject Info</span>
+                        </button>
+                    </div>
+
+                    <div class="nav-group-label">Panel Management</div>
+                    <button class="nav-btn active" data-section="add-chairman">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Add Panel Chairman</span>
+                    </button>
+                    <button class="nav-btn" data-section="add-paper-setter">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add Paper Setter</span>
+                    </button>
+                    <button class="nav-btn" data-section="display-personnel">
+                        <i class="fas fa-table"></i>
+                        <span>Display Panel Records</span>
+                    </button>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-group-label">Remuneration Management</div>
+                    <button class="nav-btn" data-section="add-remuneration">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Add Remuneration Cost</span>
+                    </button>
+                    <button class="nav-btn" data-section="display-remuneration">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Display Cost Info</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-content">
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="header-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="header-text">
+                        <h1>Admin Panel</h1>
+                        <p>Examination and Academic Management System</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">
+                <!-- Add Chairman Section -->
+                <section id="add-chairman" class="content-section active">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <div class="title-icon chairman-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <h2>Add Panel Chairman</h2>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <form id="chairman-form" action="php/add_chairman.php" method="POST" class="form-grid">
+                                <div class="form-group">
+                                    <label for="chairman-name">Panel Chairman *</label>
+                                    <input type="text" id="chairman-name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-email">Email ID *</label>
+                                    <input type="email" id="chairman-email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-phone">Contact Number *</label>
+                                    <input type="tel" id="chairman-phone" name="phone" pattern="(\+91|91)?[6-9][0-9]{9}"
+                                        title="Please enter a valid Indian phone numbe"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-bank-account">Bank Account Number *</label>
+                                    <input type="text" id="chairman-bank-account" name="bank_account_number" pattern="[0-9]{9,20}"required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-ifsc">IFSC Code</label>
+                                    <input type="text" id="chairman-ifsc" name="ifsc_code">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-department">Department</label>
+                                    <input type="text" id="chairman-department" name="department">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-college">College Name *</label>
+                                    <input type="text" id="chairman-college" name="college_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-class">Class *</label>
+                                    <input type="text" id="chairman-class" name="class" placeholder="e.g., BSc, BA"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chairman-level">Academic Level *</label>
+                                    <select id="chairman-level" name="al_id">
+                                        <option value="all">All Levels</option>
+                                        <option value="1">UG</option>
+                                        <option value="2">PG</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="year">Year</label>
+                                    <select name="year_id" id="year">
+                                        <option>Select Academic level first</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="role" value="Chairman">
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add
+                                        Chairman</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add Paper Setter Section -->
+                <section id="add-paper-setter" class="content-section">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <div class="title-icon paper-setter-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h2>Add Paper Setter</h2>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <div id="no-chairmen-message" class="empty-state" style="display: none;">
+                                <div class="empty-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <h3>No Panel Chairmen Found</h3>
+                                <p>Please add at least one Panel Chairman before adding Paper Setters.</p>
+                            </div>
+
+                            <form id="paper-setter-form" action="php/add_paper_setter.php" method="POST"
+                                class="form-grid" style="display: grid;">
+                                <div class="form-group">
+                                    <label for="setter-name">Full Paper Setter Name *</label>
+                                    <input type="text" id="setter-name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="setter-email">Email ID *</label>
+                                    <input type="email" id="setter-email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="setter-phone">Contact Number *</label>
+                                    <input type="tel" id="setter-phone" name="phone" pattern="(\+91|91)?[6-9][0-9]{9}"
+                                        title="Please enter a valid Indian phone number"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="setter-bank-account">Bank Account Number *</label>
+                                    <input type="text" id="setter-bank-account" name="bank_account_number" pattern="[0-9]{9,20}" title="please enter numeric value" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="setter-ifsc">IFSC Code *</label>
+                                    <input type="text" id="setter-ifsc" name="ifsc_code" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="setter-chairman">Select Panel Chairman *</label>
+                                    <select id="setter-chairman" name="chairman_id" required>
+                                        <option value="">Select a Panel Chairman</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="setter-college">College Name *</label>
+                                    <input type="text" id="setter-college" name="college_name" required>
+                                </div>
+                                <input type="hidden" name="role" value="Paper Setter">
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Paper
+                                        Setter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Display Personnel Section -->
+                <section id="display-personnel" class="content-section">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <div class="title-icon display-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                <h2>Display Panel Records</h2>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <div class="display-controls">
+                                <div class="view-toggles">
+                                    <button class="toggle-btn active" data-view="chairmen">
+                                        <i class="fas fa-user-tie"></i>
+                                        Panel Chairmen
+                                    </button>
+                                    <button class="toggle-btn" data-view="paper-setters">
+                                        <i class="fas fa-user-plus"></i>
+                                        Paper Setters
+                                    </button>
+                                </div>
+                                <div class="filter-controls">
+                                    <select id="chairman-filter" class="filter-select" style="display: none;">
+                                        <option value="all">All Chairmen</option>
+                                    </select>
+                                    <button class="btn btn-outline refresh-btn" id="refresh-personnel">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Refresh
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Chairmen Table -->
+                            <div id="chairmen-table-container" class="table-container">
+                                <div class="table-header">
+                                    <h3>Panel Chairmen (<span id="chairmen-count">0</span>)</h3>
+                                </div>
+                                <div class="table-wrapper">
+                                    <table id="chairmen-table" class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Department</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Bank Account</th>
+                                                <th>IFSC Code</th>
+                                                <th>College</th>
+                                                <th>Academic Level</th>
+                                                <th>Class</th>
+                                                <th>Year</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="chairmen-tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="no-chairmen" class="empty-table">
+                                    <div class="empty-icon">
+                                        <i class="fas fa-user-friends"></i>
+                                    </div>
+                                    <h3>No Chairmen Found</h3>
+                                    <p>Add some Panel Chairmen to see them here.</p>
+                                </div>
+                            </div>
+
+                            <!-- Paper Setters Table -->
+                            <div id="paper-setters-table-container" class="table-container" style="display: none;">
+                                <div class="table-header">
+                                    <h3>Paper Setters (<span id="setters-count">0</span>)</h3>
+                                </div>
+                                <div class="table-wrapper">
+                                    <table id="paper-setters-table" class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Email</th>
+                                                <th>Bank Account</th>
+                                                <th>IFSC Code</th>
+                                                <th>Chairman</th>
+                                                <th>College</th>
+                                                <th>Class</th>
+                                                <th>Year</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="setters-tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="no-setters" class="empty-table">
+                                    <div class="empty-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <h3>No Paper Setters Found</h3>
+                                    <p id="no-setters-message">Add some Paper Setters to see them here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add Subject Section -->
+                <section id="add-subject" class="content-section">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <div class="header-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="header-text">
+                                <h1>Add Subject Information</h1>
+                                <p>Create new academic subject entries</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-plus"></i>
+                                Subject Details
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="subject-form" class="form-grid">
+                                <div class="form-group">
+                                    <label for="faculty">Faculty <span class="required">*</span></label>
+                                    <select id="faculty" name="faculty" required>
+                                        <option value="">Select faculty</option>
+                                        <option value="Arts">Arts</option>
+                                        <option value="Commerce">Commerce</option>
+                                        <option value="Science">Science</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="level">Academic Level <span class="required">*</span></label>
+                                    <select id="level" name="level" required>
+                                        <option value="">Select level</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="year">Year <span class="required">*</span></label>
+                                    <select id="Syear" name="year_id" required>
+                                        <option value="">Select level first</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="class">Class <span class="required">*</span></label>
+                                    <input type="text" id="class" name="class" placeholder="Enter class name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Principle Subject <span class="required">*</span></label>
+                                    <input type="text" id="subject" name="subject" placeholder="Enter Principle Subject"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="semester">Semester <span class="required">*</span></label>
+                                    <select id="semester" name="semester" required>
+                                        <option value="">Select year first</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subjectCode">Subject Code <span class="required">*</span></label>
+                                    <input type="text" id="subjectCode" name="subjectCode"
+                                        placeholder="Enter subject code" required style="font-family: monospace;">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="subjectTitle">Subject Title <span class="required">*</span></label>
+                                    <input type="text" id="subjectTitle" name="subjectTitle"
+                                        placeholder="Enter complete subject title" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i>
+                                        Add Subject
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Display Subject Section -->
+                <section id="display-subject" class="content-section">
+                    <div class="section-header secondary">
+                        <div class="header-content">
+                            <div class="header-icon">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <div class="header-text">
+                                <h1>Subject Records</h1>
+                                <p>View and filter academic subject information</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-filter"></i>
+                                Filter Subjects
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="filter-grid">
+                                <div class="filter-group">
+                                    <label>Faculty</label>
+                                    <select id="filter-faculty">
+                                        <option value="all">All Faculties</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Level</label>
+                                    <select id="filter-level">
+                                        <option value="all">All Levels</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Year</label>
+                                    <select id="filter-year">
+                                        <option value="all">All Years</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Class</label>
+                                    <select id="filter-class">
+                                        <option value="all">All Classes</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Subject</label>
+                                    <select id="filter-subject">
+                                        <option value="all">All Subjects</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Semester</label>
+                                    <select id="filter-semester">
+                                        <option value="all">All Semesters</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-actions">
+                                <div class="filter-buttons">
+                                    <button class="btn btn-outline" id="clear-filters">Clear Filters</button>
+                                    <button class="btn btn-outline" id="refresh-subject-data">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Refresh
+                                    </button>
+                                </div>
+                                <div class="filter-count">
+                                    Showing <span id="filtered-subject-count">0</span> of <span
+                                        id="total-subject-count">0</span> subjects
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-book-open"></i>
+                                Subject Details (<span id="subject-table-count">0</span>)
+                            </div>
+                        </div>
+                        <div class="card-content table-content">
+                            <div id="no-subjects" class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3>No Subjects Found</h3>
+                                <p>Start by adding some subjects to see them here.</p>
+                            </div>
+                            <div id="no-filtered-subjects" class="empty-state" style="display: none;">
+                                <div class="empty-icon">
+                                    <i class="fas fa-filter"></i>
+                                </div>
+                                <h3>No Matching Subjects</h3>
+                                <p>Try adjusting your filters to see more results.</p>
+                            </div>
+                            <div id="subject-table-container" class="table-container" style="display: none;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject Code</th>
+                                            <th>Subject Title</th>
+                                            <th>Faculty</th>
+                                            <!--<th>Level</th>-->
+                                            <th>Year</th>
+                                            <th>Class</th>
+                                            <th>Subject</th>
+                                            <th>Semester</th>
+                                            <!--<th>Added</th>-->
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subjects-tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add Remuneration Section -->
+                <section id="add-remuneration" class="content-section">
+                    <div class="section-header remuneration">
+                        <div class="header-content">
+                            <div class="header-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="header-text">
+                                <h1>Add Remuneration Cost</h1>
+                                <p>Set examination and administrative charges</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-dollar-sign"></i>
+                                Cost Configuration
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="remuneration-form" class="form-grid">
+                                <div class="form-group">
+                                    <label for="paperType">Paper Type <span class="required">*</span></label>
+                                    <select id="paperType" name="paperType" required>
+                                        <option value="">Select paper type</option>
+                                        <option value="theory">Theory Paper</option>
+                                        <option value="model">Model Answer</option>
+                                        <option value="translation">Translation</option>
+                                        <option value="chairman">Chairman Allowance</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="courseTypeGroup" style="display: none;">
+                                    <label for="courseType">Course Type <span class="required">*</span></label>
+                                    <select id="courseType" name="courseType">
+                                        <option value="">Select course type</option>
+                                        <option value="professional">Professional</option>
+                                        <option value="non-professional">Non-Professional</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="levelGroup" style="display: none;">
+                                    <label for="al_id">Academic Level <span class="required">*</span></label>
+                                    <select id="al_id" name="al_id">
+                                        <option value="">Select level</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="specialCaseGroup" style="display: none;">
+                                    <label for="specialCase">Special Case</label>
+                                    <select id="specialCase" name="specialCase">
+                                        <option value="">Standard Course</option>
+                                        <option value="accounting-costing">Accounting and Costing</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="durationGroup" style="display: none;">
+                                    <label for="duration"><span id="durationLabel">Duration</span> <span
+                                            class="required">*</span></label>
+                                    <select id="duration" name="duration">
+                                        <option value="">Select option</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full-width" id="amountGroup" style="display: none;">
+                                    <label for="amount">Amount (₹) <span class="required">*</span></label>
+                                    <input type="number" id="amount" name="amount" placeholder="Enter amount in rupees"
+                                        min="0" step="0.01">
+                                </div>
+                                <div class="form-actions" id="remuFormActions" style="display: none;">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        Save Cost Configuration
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Display Remuneration Section -->
+                <section id="display-remuneration" class="content-section">
+                    <div class="section-header cost">
+                        <div class="header-content">
+                            <div class="header-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="header-text">
+                                <h1>Cost Information</h1>
+                                <p>View and manage remuneration costs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-filter"></i>
+                                Filter Costs
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="filter-grid">
+                                <div class="filter-group">
+                                    <label>Paper Type</label>
+                                    <select id="filter-paperType">
+                                        <option value="all">All Types</option>
+                                        <option value="theory">Theory Paper</option>
+                                        <option value="model">Model Answer</option>
+                                        <option value="translation">Translation</option>
+                                        <option value="chairman">Chairman Allowance</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Course Type</label>
+                                    <select id="filter-courseType">
+                                        <option value="all">All Course Types</option>
+                                        <option value="professional">Professional</option>
+                                        <option value="non-professional">Non-Professional</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Level</label>
+                                    <select id="filter-remuLevel">
+                                        <option value="all">All Levels</option>
+                                        <option value="1">UG</option>
+                                        <option value="2">PG</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Special Case</label>
+                                    <select id="filter-specialCase">
+                                        <option value="all">All Cases</option>
+                                        <option value="accounting-costing">Accounting & Costing</option>
+                                        <option value="standard">Standard</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-actions">
+                                <div class="filter-buttons">
+                                    <button class="btn btn-outline" id="clear-cost-filters">Clear Filters</button>
+                                    <button class="btn btn-outline" id="refresh-cost-data">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Refresh
+                                    </button>
+                                </div>
+                                <div class="filter-count">
+                                    Showing <span id="filtered-cost-count">0</span> of <span
+                                        id="total-cost-count">0</span>
+                                    cost entries
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-dollar-sign"></i>
+                                Cost Details (<span id="cost-table-count">0</span>)
+                            </div>
+                        </div>
+                        <div class="card-content table-content">
+                            <div id="no-costs" class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <h3>No Cost Information Found</h3>
+                                <p>Start by adding some cost configurations to see them here.</p>
+                            </div>
+                            <div id="no-filtered-costs" class="empty-state" style="display: none;">
+                                <div class="empty-icon">
+                                    <i class="fas fa-filter"></i>
+                                </div>
+                                <h3>No Matching Costs</h3>
+                                <p>Try adjusting your filters to see more results.</p>
+                            </div>
+                            <div id="cost-table-container" class="table-container" style="display: none;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Paper Type</th>
+                                            <th>Course Type</th>
+                                            <th>Level</th>
+                                            <th>Special Case</th>
+                                            <th>Duration/Members</th>
+                                            <th>Amount (₹)</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="costs-tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <div class="toast-content">
+                <div class="toast-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="toast-message">Message here</div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Processing...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Chairman Modal -->
+    <div id="editChairmanModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Panel Chairman</h2>
+            <form id="edit-chairman-form" class="form-grid">
+                <input type="hidden" id="edit-chairman-id" name="id">
+                <div class="form-group">
+                    <label for="edit-chairman-name">Panel Chairman <span class="required">*</span></label>
+                    <input type="text" id="edit-chairman-name" name="name" placeholder="Enter panel chairman name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-chairman-email">Email ID <span class="required">*</span></label>
+                    <input type="email" id="edit-chairman-email" name="email" placeholder="Enter email address"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-chairman-phone">Contact Number <span class="required">*</span></label>
+                    <input type="tel" id="edit-chairman-phone" name="phone" placeholder="Enter Contact number" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-chairman-department">Bank Account Number <span class="required">*</span></label>
+                    <input type="text" id="edit-chairman-department" name="department"
+                        placeholder="Enter Bank Account Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-chairman-qualification">IFSC Code</label>
+                    <input type="text" id="edit-chairman-qualification" name="qualification"
+                        placeholder="Enter IFSC Code">
+                </div>
+                <div class="form-group">
+                    <label for="edit-chairman-experience">Role</label>
+                    <input type="text" id="edit-chairman-experience" name="experience" placeholder="Enter Role">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Paper Setter Modal -->
+    <div id="editSetterModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Paper Setter</h2>
+            <form id="edit-paper-setter-form" class="form-grid">
+                <input type="hidden" id="edit-setter-id" name="id">
+                <div class="form-group">
+                    <label for="edit-setter-name">Full Paper Setter Name <span class="required">*</span></label>
+                    <input type="text" id="edit-setter-name" name="name" placeholder="Enter Paper Setter name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-setter-email">Email ID <span class="required">*</span></label>
+                    <input type="email" id="edit-setter-email" name="email" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-setter-phone">Contact Number <span class="required">*</span></label>
+                    <input type="tel" id="edit-setter-phone" name="phone" placeholder="Enter Contact number" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-setter-subject">Bank Account Number <span class="required">*</span></label>
+                    <input type="text" id="edit-setter-subject" name="subject" placeholder="Enter Bank Account Number"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-setter-faculty">IFSC Code <span class="required">*</span></label>
+                    <input type="text" id="edit-setter-faculty" name="faculty" placeholder="Enter IFSC Code" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-setter-qualification">Qualification</label>
+                    <input type="text" id="edit-setter-qualification" name="qualification"
+                        placeholder="Enter qualification">
+                </div>
+                <div class="form-group full-width">
+                    <label for="edit-setter-chairman">Select Panel Chairman <span class="required">*</span></label>
+                    <select id="edit-setter-chairman" name="chairmanId" required>
+                        <option value="">Select a Panel Chairman</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-accent">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Subject Modal -->
+    <div id="editSubjectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Subject</h2>
+            <form id="edit-subject-form" class="form-grid">
+                <input type="hidden" id="edit-subject-id" name="id">
+                <div class="form-group">
+                    <label for="edit-faculty">Faculty <span class="required">*</span></label>
+                    <select id="edit-faculty" name="faculty" required>
+                        <option value="">Select faculty</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Commerce">Commerce</option>
+                        <option value="Science">Science</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-level">Academic Level <span class="required">*</span></label>
+                    <select id="edit-level" name="level" required>
+                        <option value="">Select level</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-year">Year <span class="required">*</span></label>
+                    <select id="edit-year" name="year" required>
+                        <option value="">Select year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-class">Class <span class="required">*</span></label>
+                    <input type="text" id="edit-class" name="class" placeholder="Enter class name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-subject">Subject <span class="required">*</span></label>
+                    <input type="text" id="edit-subject" name="subject" placeholder="Enter subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-semester">Semester <span class="required">*</span></label>
+                    <select id="edit-semester" name="semester" required>
+                        <option value="">Select semester</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-subjectCode">Subject Code <span class="required">*</span></label>
+                    <input type="text" id="edit-subjectCode" name="subjectCode" placeholder="Enter subject code"
+                        required style="font-family: monospace;">
+                </div>
+                <div class="form-group full-width">
+                    <label for="edit-subjectTitle">Subject Title <span class="required">*</span></label>
+                    <input type="text" id="edit-subjectTitle" name="subjectTitle"
+                        placeholder="Enter complete subject title" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Cost Modal -->
+    <div id="editCostModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Remuneration Cost</h2>
+            <form id="edit-remuneration-form" class="form-grid">
+                <input type="hidden" id="edit-cost-id" name="id">
+                <div class="form-group">
+                    <label for="edit-paperType">Paper Type <span class="required">*</span></label>
+                    <select id="edit-paperType" name="paperType" required>
+                        <option value="">Select paper type</option>
+                        <option value="theory">Theory Paper</option>
+                        <option value="model">Model Answer</option>
+                        <option value="translation">Translation</option>
+                        <option value="chairman">Chairman Allowance</option>
+                    </select>
+                </div>
+                <div class="form-group" id="edit-courseTypeGroup" style="display: none;">
+                    <label for="edit-courseType">Course Type <span class="required">*</span></label>
+                    <select id="edit-courseType" name="courseType">
+                        <option value="">Select course type</option>
+                        <option value="professional">Professional</option>
+                        <option value="non-professional">Non-Professional</option>
+                    </select>
+                </div>
+                <div class="form-group" id="edit-levelGroup" style="display: none;">
+                    <label for="edit-remuLevel">Academic Level <span class="required">*</span></label>
+                    <select id="edit-remuLevel" name="level">
+                        <option value="">Select level</option>
+                    </select>
+                </div>
+                <div class="form-group" id="edit-specialCaseGroup" style="display: none;">
+                    <label for="edit-specialCase">Special Case</label>
+                    <select id="edit-specialCase" name="specialCase">
+                        <option value="">Standard Course</option>
+                        <option value="accounting-costing">Accounting and Costing</option>
+                    </select>
+                </div>
+                <div class="form-group" id="edit-durationGroup" style="display: none;">
+                    <label for="edit-duration"><span id="edit-durationLabel">Duration</span> <span
+                            class="required">*</span></label>
+                    <select id="edit-duration" name="duration">
+                        <option value="">Select option</option>
+                    </select>
+                </div>
+                <div class="form-group full-width" id="edit-amountGroup" style="display: none;">
+                    <label for="edit-amount">Amount (₹) <span class="required">*</span></label>
+                    <input type="number" id="edit-amount" name="amount" placeholder="Enter amount in rupees" min="0"
+                        step="0.01">
+                </div>
+                <div class="form-actions" id="edit-remuFormActions" style="display: none;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="confirmDeleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this record?</p>
+            <div class="form-actions">
+                <button class="btn btn-destructive" id="confirm-delete">
+                    <i class="fas fa-trash"></i>
+                    Yes, Delete
+                </button>
+                <button class="btn btn-outline" id="cancel-delete">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination Management System</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-icon-wrapper">
+                    <i class="fas fa-graduation-cap header-icon"></i>
+                </div>
+                <div>
+                    <h1 class="header-title">Examination Management System</h1>
+                    <p class="header-subtitle">Manage paper setters, calculate remuneration, and generate reports</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <button class="nav-btn active" data-tab="dashboard">
+                <i class="fas fa-home"></i> Dashboard
+            </button>
+            <button class="nav-btn" data-tab="assign-calculate">
+                <i class="fas fa-calculator"></i> Assign & Calculate
+            </button>
+            <button class="nav-btn" data-tab="view-reports">
+                <i class="fas fa-file-text"></i> View Reports
+            </button>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active">
+                <div class="dashboard-header">
+                    <h2>Dashboard Overview</h2>
+                    <p>Quick access to all examination management features</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" data-tab="assign-calculate">
+                        <div class="card-icon primary">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="card-header">
+                            <h3>Assign & Calculate</h3>
+                            <p>Assign paper setters and calculate remuneration</p>
+                        </div>
+                        <button class="btn btn-primary">Get Started</button>
+                    </div>
+                    <div class="dashboard-card" data-tab="view-reports">
+                        <div class="card-icon warning">
+                            <i class="fas fa-file-text"></i>
+                        </div>
+                        <div class="card-header">
+                            <h3>View Reports</h3>
+                            <p>Generate comprehensive reports of examiner remuneration</p>
+                        </div>
+                        <button class="btn btn-warning">View Reports</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assign & Calculate Tab -->
+            <section id="assign-calculate" class="tab-content">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Paper Setter Assignment & Remuneration</h2>
+                        <p>Assign subjects to paper setters and calculate remuneration</p>
+                    </div>
+
+                    <form id="examinationForm" action="add_examiner_for_calculation.php" method="POST">
+                        <!-- Paper Setter Assignment Section -->
+                        <div class="form-section">
+                            <h3>Paper Setter Assignment</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="faculty">Faculty</label>
+                                    <select id="faculty" name="faculty_id" required>
+                                        <option value="">Select faculty</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="academicLevel">Academic Level</label>
+                                    <select id="academicLevel" name="level_name" required>
+                                        <option value="">Select Academic Level</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="years">Year</label>
+                                    <select id="years" name="years" required>
+                                        <option value="">Select Year</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="class">Class</label>
+                                    <select id="class" name="class_id" required>
+                                        <option value="">Select class</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="majorSubject">Principle Subject</label>
+                                    <select id="majorSubject" name="major_subject_id" required>
+                                        <option value="">Select Principle subject</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sem">Semester</label>
+                                    <select id="sem" name="semester_number" required>
+                                        <option value="">Select semester</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <select id="subject" name="subject_id" required>
+                                        <option value="">Select subject</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="examiner">Paper Setter</label>
+                                    <select id="examiner" name="examiner_id" required>
+                                        <option value="">Select paper setter</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Remuneration Details Section -->
+                        <div class="form-section">
+                            <h3>Remuneration Details</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="year">Year</label>
+                                    <input type="number" id="year" name="year" min="2020" max="2030" value="2024"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="examPeriod">Exam Period</label>
+                                    <select id="examPeriod" name="exam_period" required>
+                                        <option value="">Select exam period</option>
+                                        <option value="winter">Winter Exam</option>
+                                        <option value="summer">Summer Exam</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <div class="checkbox-section">
+                                    <label class="checkbox-section-label">Paper Sets</label>
+                                    <div class="checkbox-options">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="paper_sets" value="A" class="checkbox-input">
+                                            <span class="checkbox-text">Set A</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="paper_sets" value="B" class="checkbox-input">
+                                            <span class="checkbox-text">Set B</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="paper_sets" value="C" class="checkbox-input">
+                                            <span class="checkbox-text">Set C</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="radio-section">
+                                    <label class="radio-section-label">Exam Duration</label>
+                                    <div class="radio-options">
+                                        <label class="radio-label">
+                                            <input type="radio" name="exam_duration" value="1.5 hrs"
+                                                class="radio-input">
+                                            <span class="radio-text">1.5 Hours</span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="exam_duration" value="2 hrs" class="radio-input">
+                                            <span class="radio-text">2 Hours</span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="exam_duration" value="3 hrs" class="radio-input">
+                                            <span class="radio-text">3 Hours</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-section">
+                                    <label class="checkbox-section-label">Paper Type</label>
+                                    <div class="checkbox-options">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="paper_type" value="theory"
+                                                class="checkbox-input">
+                                            <span class="checkbox-text">Theory Paper</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="paper_type" value="model"
+                                                class="checkbox-input">
+                                            <span class="checkbox-text">Model Answer</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="paper_type" value="translation"
+                                                class="checkbox-input">
+                                            <span class="checkbox-text">Translation</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Summary Section -->
+                        <!-- <div class="summary-section">
+                            <div class="summary-card">
+                                <h3>Remuneration Summary</h3>
+                                <div class="summary-total">
+                                    <span>Total Remuneration:</span>
+                                    <span id="totalRemuneration">₹0</span>
+                                </div>
+                            </div>
+                        </div> -->
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Assignment & Remuneration</button>
+                    <button type="reset" class="btn btn-secondary" id="resetForm">Reset Form</button>
+                </div>
+                </form>
+        </div>
+        </section>
+
+        <!-- View Reports Tab -->
+        <section id="view-reports" class="tab-content">
+            <div class="report-container">
+                <!-- Filter Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Filter Records</h3>
+                        <p>Filter records by paper setter, exam period, and year</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="filter-section">
+                            <div class="form-group">
+                                <label for="paperSetterFilter">Paper Setter</label>
+                                <select id="paperSetterFilter" name="paperSetterFilter" class="filter-select">
+                                    <option value="all">All Paper Setters</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="examPeriodFilter">Exam Period</label>
+                                <select id="examPeriodFilter" name="examPeriodFilter" class="filter-select">
+                                    <option value="all">All Exam Periods</option>
+                                    <option value="winter">Winter Exam</option>
+                                    <option value="summer">Summer Exam</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="examYearFilter">Exam Year</label>
+                                <select id="examYearFilter" class="filter-select">
+                                    <option value="all">All Years</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-outline " id="refresh-remunerations">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Records Table -->
+                <div class="card" id="recordsTableCard" style="display: none;">
+                    <div class="card-header primary-header">
+                        <h3>Paper Setter Assignment Records</h3>
+                        <p>Detailed view of assignments and remuneration</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table class="records-table" id="recordsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Paper Setter</th>
+                                        <th>Program</th>
+                                        <th>Year</th>
+                                        <th>Academic Level</th>
+                                        <th>Principle Subject</th>
+                                        <th>Subject Code</th>
+                                        <th>Subject Name</th>
+                                        <th>Set</th>
+                                        <th>Paper Type</th>
+                                        <th>Exam</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recordsTableBody">
+                                </tbody>
+                                <tfoot>
+                                    <tr class="total-row">
+                                        <td colspan="10"><strong>Total Amount:</strong></td>
+                                        <td id="totalAmount"><strong>₹0</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <!-- <div class="card">
+                    <div class="card-header warning-header">
+                        <h2>Examiner Remuneration Summary</h2>
+                        <p>Comprehensive overview of all examiner payments</p>
+                    </div>
+                    <div class="card-content" id="reportContent">
+                        <div class="no-data">
+                            <i class="fas fa-file-text"></i>
+                            <p>No examiner data available. Please assign paper setters first.</p>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <button id="exportCSV" class="btn btn-primary">Export CSV</button>
+            <button id="exportPDF" class="btn btn-success">Export PDF Bill</button>
+        </section>
+    </div>
+
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+
+</html>

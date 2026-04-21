@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination System Dashboard</title>
+    <meta name="description" content="Dashboard for accessing Admin and User Panels of the Examination and Academic Management System">
+    <meta name="keywords" content="dashboard, examination management, admin panel, user panel, academic system">
+    <meta name="author" content="Examination and Academic Management System">
+
+    <meta property="og:title" content="Examination System Dashboard">
+    <meta property="og:description" content="Access Admin and User Panels for managing examination and academic resources">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Examination System Dashboard">
+    <meta name="twitter:description" content="Access Admin and User Panels for examination management">
+
+    <link rel="stylesheet" href="assets/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>Examination</h2>
+                        <p>Management</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-group-label">Navigation</div>
+                    <button class="nav-btn active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="header-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="header-text">
+                        <h1>Dashboard</h1>
+                        <p>Examination and Academic Management System</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="content-wrapper">
+                <section id="dashboard" class="content-section active">
+                    <div class="dashboard-grid">
+                        <!-- Admin Panel Card -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-cogs"></i>
+                                    Admin Panel
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p>Manage panel chairmen, paper setters, subjects, and remuneration costs.</p>
+                                <a href="index.html" class="btn btn-primary" id="adminLink">
+                                    <i class="fas fa-arrow-right"></i>
+                                    Go to Admin Panel
+                                </a>
+                            </div>
+                        </div>
+                        <!-- User Panel Card -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-user"></i>
+                                    User Panel
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p>Access user-specific features and examination information.</p>
+                                <a href="user.html" class="btn btn-accent">
+                                    <i class="fas fa-arrow-right"></i>
+                                    Go to User Panel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <div class="toast-content">
+                <div class="toast-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="toast-message">Message here</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Admin Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required placeholder="Enter username">
+                    <span class="error-message" id="usernameError"></span>
+                </div>
+                <div class="form-group password-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                    <i class="" id="togglePassword"></i>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember Me
+                    </label>
+                </div>
+                <button type="submit" id="loginButton">
+                    <span class="button-text">Login</span>
+                    <span class="loading-spinner hidden"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/dashboard.js"></script>
+</body>
+</html>
