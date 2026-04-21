@@ -115,15 +115,16 @@ http://localhost/examinationremunerationbillingsystem/user_panel/
 
 ## 📸 Screenshots
 
-(Add screenshots here)
-
 -dashboard
+
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e8e0e0a4-1d93-4ce2-ba90-c7a2cb3041e6" />
 
 -admin-panel
+
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/6202ce8b-45c5-498a-89e6-6518cd3c9565" />
 
 -user-panel
+
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b3fdb6ad-a7d8-478e-945b-4a2433febb87" />
 
 ---
@@ -167,21 +168,12 @@ http://localhost/examinationremunerationbillingsystem/user_panel/
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to fork and improve the system.
-
----
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
-
----
-
 ## 👨‍💻 Author
 
 **Abhijeet Kulkarni**
+**Harihar Sharma**
+
 GitHub: https://github.com/Heisenberg7876
+GitHub: https://github.com/prof-Hagrid
 
 ---
