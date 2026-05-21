@@ -170,10 +170,10 @@ http://localhost/examinationremunerationbillingsystem/user_panel/
 
 ## 👨‍💻 Authors
 
-**Abhijeet Kulkarni** (UI & Front-End)
+**Abhijeet Kulkarni** 
 GitHub: https://github.com/Heisenberg7876 <br>
 
-**Harihar Sharma** (Back-End)
+**Harihar Sharma** 
 GitHub: https://github.com/prof-Hagrid
 
 ---
